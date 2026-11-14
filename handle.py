@@ -3,22 +3,23 @@ from handlers.https_func import https_func
 from logger import logger
 from config import BYTES_SIZE, READ_TIMEOUT
 
-def handle_client(client_socket):
+def handle_client(client_socket, address):
     with client_socket:
         client_socket.settimeout(READ_TIMEOUT)
         try:
             request = client_socket.recv(BYTES_SIZE)
-            logger.info(f"Запрос от клиента({client_socket})")
+            logger.info(f"Запрос от клиента({address})")
             if not request:
                 return
         except Exception as e:
             logger.error(f"Ошибка при запросе от клиента: {e}")
             return
     
-            # Парсинг запроса
+        # Парсинг запроса
         try:
             first_line = request.split(b'\n')[0].decode('utf-8', errors='ignore')
             url = first_line.split(' ')[1]
+            print(url)
         except IndexError:
             logger.error("Кривой запрос")
             return

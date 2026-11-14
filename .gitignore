@@ -5,3 +5,6 @@ __pycache__/
 *.log
 test*.py
 backup/
+*.crt
+*.key
+*.pem

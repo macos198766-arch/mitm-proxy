@@ -2,13 +2,13 @@ import socket
 import threading
 from handle import handle_client
 from logger import logger
-from config import HOST, PORT
+from config import PROXY_HOST, PROXY_PORT
 
 # Создание самого сервера(он будет открывать сокеты в потоках для разных клиентов и запросов)
 def start_proxy():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
         server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)   
-        server_address = (HOST, PORT)
+        server_address = (PROXY_HOST, PROXY_PORT)
         try:
             server_socket.bind(server_address)
             server_socket.listen(10)
@@ -19,7 +19,7 @@ def start_proxy():
         while True:
             try:
                 client_socket, address = server_socket.accept()
-                threading.Thread(target=handle_client, args=(client_socket,)).start()
+                threading.Thread(target=handle_client, args=(client_socket, address)).start()
             except Exception as e:
                 logger.error(f"Ошибка при подключения клиента: {e}")
 
