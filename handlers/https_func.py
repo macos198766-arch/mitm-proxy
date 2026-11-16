@@ -8,9 +8,7 @@ from generator import check
 # Блокировка, чтобы два потока не перезаписывали один сертификат одновременно
 cert_lock = threading.Lock()
 
-def https_func(client_socket, url):
-    host, port = url.split(':')
-    port = int(port)
+def https_func(client_socket, host, port):
     
     remote_tls = None
     client_tls = None
