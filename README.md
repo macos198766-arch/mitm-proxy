@@ -1,5 +1,5 @@
 # MITM прокси сервер
-![Tests](https://github.com)
+[![Tests](https://github.com/macos198766-arch/mitm-proxy/actions/workflows/tests.yml/badge.svg)](https://github.com/macos198766-arch/mitm-proxy/actions)
 
 Прокси сервер выступает посредником между клиентом и сервером. Данный прокси умеет обрабатывать запросы и ответы, http и https соединения.
 Суть MITM прокси в том, что он умеет читать и расшифровывать HTTPS трафик между браузером и сервером (прокси находится между ними, перехватывая запросы).  
